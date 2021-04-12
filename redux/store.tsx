@@ -2,13 +2,13 @@ import { createStore,compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk'
 import cartReducer from './reducers/cartReducer';
 import ls from 'local-storage';
-import throttle from 'lodash.throttle';
 import {currencies} from '../api/currencies';
 
 function loadState(){
-    const state = ls.get('cart');
-    const currency = ls.get('currentCurrency');
-    currency ? null : ls.set('currentCurrency', currencies.usd);
+    const localStorage:any = ls
+    const state = localStorage.get('cart');
+    const currency = localStorage.get('currentCurrency');
+    currency ? null : localStorage.set('currentCurrency', currencies.usd);
     try{
         if(state !== null){
             console.log('cart get')
@@ -23,9 +23,9 @@ function loadState(){
     }
 }
 
-function saveState(state){
+function saveState(state:any){
     console.log('save data')
-    ls.set('cart', JSON.stringify(state))
+    localStorage.set('cart', JSON.stringify(state))
 }
 
 const Store = createStore(
@@ -33,8 +33,6 @@ const Store = createStore(
     loadState(),
     applyMiddleware(thunk)
     )
-Store.subscribe(throttle(()=>{
-    saveState(Store.getState());
-}))
+
 
 export default Store;

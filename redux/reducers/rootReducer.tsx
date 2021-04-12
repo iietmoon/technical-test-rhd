@@ -1,4 +1,4 @@
-const rootReducer = (state)=>{
+const rootReducer = (state:any)=>{
     return state;
 }
 

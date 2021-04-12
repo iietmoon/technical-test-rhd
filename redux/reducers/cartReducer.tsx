@@ -1,6 +1,6 @@
 import {ADD_TO_CART, REMOVE_FROM_CART, CLEAR_CART} from '../actions/types';
 
-const cartReducer = (state, action)=>{
+const cartReducer = (state:any, action:any)=>{
     console.log(action, state)
     switch(action.type){
         case ADD_TO_CART:{

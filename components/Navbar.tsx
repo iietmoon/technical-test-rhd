@@ -16,7 +16,6 @@ type NavbarProps = {
     isCart: boolean,
 }
 
-
 class Navbar extends Component<NavbarProps> {
     setUsd = ()=>{
       localStorage.set('currentCurrency', currencies.usd);

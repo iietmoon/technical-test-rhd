@@ -7,8 +7,6 @@ import CartItem from '../components/CartItem';
 import ls from 'local-storage';
 import {connect} from "react-redux";
 import { clearCart } from '../redux/actions/actions';
-import localStorage from "local-storage";
-
 
 type itemProps = {
   quantity: number,

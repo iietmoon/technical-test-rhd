@@ -75,6 +75,7 @@ class ProductView extends Component<SingleProductProps> {
     )
     }
 }
+
 const mapDispatchToProps = (dispatch:any) => {
   return {
       addToCart: (productsInfo:any, quantity:string) => dispatch(addToCart(productsInfo, quantity)),

@@ -4,8 +4,9 @@ import cartReducer from './reducers/cartReducer';
 import ls from 'local-storage';
 import {currencies} from '../api/currencies';
 
+const localStorage:any = ls;
+
 function loadState(){
-    const localStorage:any = ls;
     const state = localStorage.get('cart');
     const currency = localStorage.get('currentCurrency');
     currency ? null : localStorage.set('currentCurrency', currencies.usd);

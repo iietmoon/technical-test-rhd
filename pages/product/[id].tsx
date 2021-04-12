@@ -7,12 +7,12 @@ import ls from 'local-storage';
 
 const Api = config.API_HOST;
 
-
 type ProductProps = {
   product:[],
   id: any,
   price: any
 }
+
 export const getStaticPaths = async ()=>{
   const res = await fetch(Api);
   const products = await res.json();
@@ -28,6 +28,7 @@ export const getStaticPaths = async ()=>{
     fallback: false
   }
 }
+
 export const getStaticProps = async (context:any) => {
   const id = context.params.id;
   return{

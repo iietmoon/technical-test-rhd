@@ -10,7 +10,8 @@ import ls from 'local-storage';
 const CategoryProduct = ()=>{
   const router = useRouter()
   const { cat } = router.query;
-  const currency = ls.get('currentCurrency');
+  const localStorage: any = ls
+  const currency = localStorage.get('currentCurrency');
   const endpoint = '/category/'+ cat
   return (
     <>

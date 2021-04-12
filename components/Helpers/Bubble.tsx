@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-const Bubble = (props)=>{
+const Bubble = (props:any)=>{
     return(
         <div className="bubble">
             <span>{props.totalQuantity}</span>
@@ -8,9 +8,9 @@ const Bubble = (props)=>{
     )
 }
 
-const mapStateToProps = (state)=>{
+const mapStateToProps = (state:any)=>{
     return{
-        totalQuantity: state.cart.reduce((total, item)=> parseInt(total) + parseInt(item.quantity) , 0)
+        totalQuantity: state.cart.reduce((total:any, item:any)=> parseInt(total) + parseInt(item.quantity) , 0)
     }
 }
 export default connect(mapStateToProps)(Bubble);

@@ -3,7 +3,10 @@ type ProductItemProps = {
     image: string,
     title: string,
     price: string,
-    currency
+    currency: {
+      sym: string,
+      x: number
+    }
 }
 
 const ProductItem = ({id, image, title, price, currency} :ProductItemProps) => {

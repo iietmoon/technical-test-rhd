@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { removeFromCart } from "../redux/actions/actions";
 
-function CartItem(props){
+function CartItem(props:any){
     const {item, index, currency} = props;
     const rPrice = parseInt(item.product.price) * currency.x;
     const fixedPrice = rPrice.toFixed(2)
@@ -21,9 +21,9 @@ function CartItem(props){
     );
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch:any) => {
     return {
-        removeFromCart: (index) => dispatch(removeFromCart(index)),
+        removeFromCart: (index:any) => dispatch(removeFromCart(index)),
     };
 }
 

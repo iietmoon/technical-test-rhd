@@ -4,26 +4,32 @@ import Bubble  from './Helpers/Bubble';
 import ls from 'local-storage';
 import {currencies} from '../api/currencies';
 
+const localStorage: any = ls
+
 type NavbarProps = {
     isActive: boolean,
-    currency,
+    currency: {
+      name: string,
+      sym: string,
+      x: number
+    }
     isCart: boolean,
 }
 
-class Navbar extends Component<NavbarProps> { 
+
+class Navbar extends Component<NavbarProps> {
     setUsd = ()=>{
-      console.log('languge seted')
-      ls.set('currentCurrency', currencies.usd);
+      localStorage.set('currentCurrency', currencies.usd);
       location.reload();
     }
     setEuro = ()=>{
       console.log('languge seted')
-      ls.set('currentCurrency', currencies.euro);
+      localStorage.set('currentCurrency', currencies.euro);
       location.reload();
     }
     setYen = ()=>{
       console.log('languge seted')
-      ls.set('currentCurrency', currencies.yen);
+      localStorage.set('currentCurrency', currencies.yen);
       location.reload();
     }
     state = {

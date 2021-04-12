@@ -7,10 +7,15 @@ import ls from 'local-storage';
 
 const Api = config.API_HOST;
 
+
+type ProductProps = {
+  product:[],
+  id: any
+}
 export const getStaticPaths = async ()=>{
   const res = await fetch(Api);
   const products = await res.json();
-  const paths = products.map(product =>{
+  const paths = products.map((product:ProductProps) =>{
      return{
       params: {
         id: product.id.toString()
@@ -22,7 +27,7 @@ export const getStaticPaths = async ()=>{
     fallback: false
   }
 }
-export const getStaticProps = async (context) => {
+export const getStaticProps = async (context:any) => {
   const id = context.params.id;
   return{
     props: {
@@ -31,8 +36,9 @@ export const getStaticProps = async (context) => {
   }
 }
 
-const SingleProduct = ({ id })=>{
-  const currency = ls.get('currentCurrency');
+const SingleProduct = (id:any)=>{
+  const localStorage: any = ls
+  const currency = localStorage.get('currentCurrency');
   return (
     <>
       <Header title={'Product'}/>

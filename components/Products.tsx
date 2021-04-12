@@ -3,8 +3,11 @@ import ProductItem from './ProductItem';
 import { config } from '../config';
 
 type ProductsProps ={
-   currency,
-   endpoint,
+  currency: {
+    sym: string,
+    x: number
+  }
+   endpoint: string,
 }
 
 class Products extends Component<ProductsProps> {
@@ -26,7 +29,7 @@ class Products extends Component<ProductsProps> {
       return(
         <div className="container">
             <div className="row">
-                {this.state.products.map(product=>(
+                {this.state.products.map((product:any)=>(
                   <div className="col-3" key={product.id}>
                      <ProductItem id={product.id} title={product.title} image={product.image} price={product.price} currency={this.props.currency}/>
                   </div>

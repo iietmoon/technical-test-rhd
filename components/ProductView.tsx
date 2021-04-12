@@ -3,10 +3,14 @@ import { config } from '../config';
 import {connect} from 'react-redux';
 import { addToCart } from '../redux/actions/actions';
 import Breadcrumbs from '../components/Breadcrumbs';
+import { currencies } from '../api/currencies';
+
 
 type SingleProductProps = {
-  id: string,
-  currency,
+  id: any,
+  currency: object,
+  addToCart: any,
+  price: string
 }
 
 class ProductView extends Component<SingleProductProps> {
@@ -15,7 +19,7 @@ class ProductView extends Component<SingleProductProps> {
     quantity: 0,
   }
   componentDidMount(){
-    const Api = config.API_HOST+"/"+this.props.id
+    const Api = config.API_HOST+"/1"
     fetch(Api)
       .then((response) => response.json())
       .then((data) => {
@@ -24,7 +28,7 @@ class ProductView extends Component<SingleProductProps> {
         })
       })
   }
-  hundelQuantity = (event) =>{
+  hundelQuantity = (event:any) =>{
     const value = event.target.value
     if(value < 0)
     {
@@ -36,15 +40,16 @@ class ProductView extends Component<SingleProductProps> {
       })
     }
   }
-  addToCart = (product) => {
+  addToCart = (product:any) => {
     this.props.addToCart(product, this.state.quantity);
   }
   render()
     {
-      const product = this.state.product;
+      const currency:any = this.props.currency
+      const product:any = this.state.product;
       const quantity = this.state.quantity;
-      const rPrice = parseInt(product.price) * this.props.currency.x;
-      const fixedPrice = rPrice.toFixed(2)
+      const rPrice = parseInt(product.price) * currency.x;
+      const fixedPrice:any = rPrice.toFixed(2)
       const total =  fixedPrice * quantity;
       return(
         <>
@@ -58,12 +63,12 @@ class ProductView extends Component<SingleProductProps> {
           <div className="col d-flex justify-content-lg-center align-items-center height-6 pl">
             <div className="_content">
               <h3>{product.title}</h3>
-              <p><span>{fixedPrice +"  "+ this.props.currency.sym}</span></p>
+              <p><span>{fixedPrice +"  "+ currency.sym}</span></p>
               <p>{product.description}</p>
               <div className="_form py-5">
                   <input type="number" placeholder="Quantity" value={quantity} onChange={this.hundelQuantity}/>
                   <button onClick={()=>this.addToCart(product)}>Add to cart</button>
-                  <p className="py-2">Total : {total + this.props.currency.sym}</p>
+                  <p className="py-2">Total : {total + currency.sym}</p>
               </div>
             </div>
           </div>
@@ -72,9 +77,9 @@ class ProductView extends Component<SingleProductProps> {
     )
     }
 }
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch:any) => {
   return {
-      addToCart: (productsInfo, quantity) => dispatch(addToCart(productsInfo, quantity)),
+      addToCart: (productsInfo:any, quantity:string) => dispatch(addToCart(productsInfo, quantity)),
   }
 }
 

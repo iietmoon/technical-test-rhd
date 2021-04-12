@@ -11,7 +11,8 @@ import ls from 'local-storage';
 
 class Home extends Component {
   render() {
-    const currency = ls.get('currentCurrency');
+    const localStorage: any = ls
+    const currency = localStorage.get('currentCurrency');
     return (
       <>
         <Header title={'Home'}/>

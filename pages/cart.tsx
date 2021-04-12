@@ -7,14 +7,31 @@ import CartItem from '../components/CartItem';
 import ls from 'local-storage';
 import {connect} from "react-redux";
 import { clearCart } from '../redux/actions/actions';
+import localStorage from "local-storage";
 
-class Cart extends Component {
+
+type itemProps = {
+  quantity: number,
+  product: {
+    price: string
+  },
+}
+
+type CartProps = {
+  clearCart: any,
+  get: any,
+  cartItems: [],
+  total: number,
+}
+
+class Cart extends Component<CartProps> {
   placeOrder = ()=>{
     alert('📦 Thanks for your Order, We will work on it in while. with a lot of thanks')
     this.props.clearCart;
   }
   render() {
-    const currency = ls.get('currentCurrency');
+    const localStorage: any = ls
+    const currency = localStorage.get('currentCurrency');
     return (
       <>
         <Header title={"cart"} />
@@ -40,7 +57,7 @@ class Cart extends Component {
           <div className="d-flex justify-content-end align-items-center">
             <div>
              <p>Total : {this.props.total.toFixed(2) + "  " + currency.sym}</p>
-             <button class="_btn" onClick={this.props.clearCart} className="btn btn-primary">Place Order Now <i className="bi bi-arrow-right"></i></button>
+             <button onClick={this.props.clearCart} className="btn btn-primary _btn">Place Order Now <i className="bi bi-arrow-right"></i></button>
             </div>
           </div>
         </div>
@@ -50,15 +67,16 @@ class Cart extends Component {
   }
 }
 
-const mapStateToProps = (state)=>{
-  const currency = ls.get('currentCurrency');
+const mapStateToProps = (state:any)=>{
+  const localStorage: any = ls
+  const currency = localStorage.get('currentCurrency');
   return{
       cartItems: state.cart,
-      total: state.cart.reduce((total, item)=> total + currency.x*item.quantity*parseInt(item.product.price), 0)
+      total: state.cart.reduce((total:number, item:itemProps)=> total + currency.x*item.quantity*parseInt(item.product.price), 0)
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch:any) => {
   return {
        clearCart: () => dispatch(clearCart()),
   };

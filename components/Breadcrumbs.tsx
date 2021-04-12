@@ -3,7 +3,7 @@ import React from "react";
 type BreadcrumbsProps = {
   isActive: boolean,
   page: string,
-  product,
+  product: string,
 }
 
 const Breadcrumbs = ({isActive, page, product}:BreadcrumbsProps)=>{

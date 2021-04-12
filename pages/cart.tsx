@@ -26,7 +26,7 @@ type CartProps = {
 
 class Cart extends Component<CartProps> {
   placeOrder = ()=>{
-    alert('📦 Thanks for your Order, We will work on it in while. with a lot of thanks')
+    alert('📦 Thanks for your Order, We will work on it in while.')
     this.props.clearCart;
   }
   render() {
@@ -57,7 +57,7 @@ class Cart extends Component<CartProps> {
           <div className="d-flex justify-content-end align-items-center">
             <div>
              <p>Total : {this.props.total.toFixed(2) + "  " + currency.sym}</p>
-             <button onClick={this.props.clearCart} className="btn btn-primary _btn">Place Order Now <i className="bi bi-arrow-right"></i></button>
+             <button onClick={this.placeOrder} className="btn btn-primary _btn">Place Order Now <i className="bi bi-arrow-right"></i></button>
             </div>
           </div>
         </div>

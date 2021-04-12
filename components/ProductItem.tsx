@@ -1,3 +1,4 @@
+
 type ProductItemProps = {
     id: string,
     image: string,

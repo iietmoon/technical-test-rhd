@@ -3,14 +3,12 @@ import { config } from '../config';
 import {connect} from 'react-redux';
 import { addToCart } from '../redux/actions/actions';
 import Breadcrumbs from '../components/Breadcrumbs';
-import { currencies } from '../api/currencies';
 
 
 type SingleProductProps = {
   id: any,
   currency: object,
   addToCart: any,
-  price: string
 }
 
 class ProductView extends Component<SingleProductProps> {

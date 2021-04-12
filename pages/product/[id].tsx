@@ -10,7 +10,8 @@ const Api = config.API_HOST;
 
 type ProductProps = {
   product:[],
-  id: any
+  id: any,
+  price: any
 }
 export const getStaticPaths = async ()=>{
   const res = await fetch(Api);

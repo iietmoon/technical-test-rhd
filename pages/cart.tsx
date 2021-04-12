@@ -24,8 +24,8 @@ type CartProps = {
 
 class Cart extends Component<CartProps> {
   placeOrder = ()=>{
-    alert('📦 Thanks for your Order, We will work on it in while.')
-    this.props.clearCart;
+    this.props.clearCart();
+    alert('📦 Thanks for your Order, We will work on it in while.');
   }
   render() {
     const localStorage: any = ls

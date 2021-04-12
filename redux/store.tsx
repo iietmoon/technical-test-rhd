@@ -5,7 +5,7 @@ import ls from 'local-storage';
 import {currencies} from '../api/currencies';
 
 function loadState(){
-    const localStorage:any = ls
+    const localStorage:any = ls;
     const state = localStorage.get('cart');
     const currency = localStorage.get('currentCurrency');
     currency ? null : localStorage.set('currentCurrency', currencies.usd);
@@ -33,6 +33,8 @@ const Store = createStore(
     loadState(),
     applyMiddleware(thunk)
     )
-
+Store.subscribe(()=>{
+    saveState(Store.getState())
+});
 
 export default Store;
